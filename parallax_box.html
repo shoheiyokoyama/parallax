@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>parallax box</title>
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <style>
+  body {
+    margin: 0;
+    padding: 0;
+    height: 3000px;
+  }
+  .box {
+    height: 40px;
+    width: 40px;
+    position: fixed;
+    top: 10px;
+  }
+  #box1 {left: 10px; background: red;}
+  #box2 {left: 60px; background: blue;}
+  #box3 {left: 110px; background: green;}
+  </style>
+</head>
+<body>
+  <div id="box1" class="box"></div>
+  <div id="box2" class="box"></div>
+  <div id="box3" class="box"></div>
+  <script>
+    $(function() {
+      var box1Offset = $('#box1').offset();
+      var box2Offset = $('#box2').offset();
+      var box3Offset = $('#box3').offset();
+
+      $(window).scroll(function() {
+        var diffY = $(this).scrollTop();
+        console.log(diffY);
+
+        $('#box1').css('top', box1Offset.top + diffY / 2);
+        $('#box1').css('left', box1Offset.left + diffY / 5);
+        $('#box1').css('width', 40 + diffY * 0.2);
+        $('#box1').css('height', 40 + diffY * 0.1);
+
+        $('#box2').css('top', box2Offset.top + diffY / 3);
+        $('#box2').css('left', box2Offset.left + diffY / 2);
+        $('#box2').css('width', 40 + diffY * 0.1);
+        $('#box2').css('height', 40 + diffY * 0.3);
+
+        $('#box3').css('top', box3Offset.top + diffY / 4);
+        $('#box3').css('left', box3Offset.left + diffY / 4);
+        $('#box3').css('width', 40 + diffY * 0.1);
+        $('#box3').css('height', 40 + diffY * 0.3);
+      });
+    });
+  </script>
+</body>
+</html>
